@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Asset } from "expo-asset";
+import * as Font from "expo-font";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -9,13 +12,17 @@ export default function App() {
 
   useEffect(() => {
     async function prepare() {
+      //startLoading
       try {
-        // 강의의 startLoading과 동일하게 동작
+        await Font.loadAsync(Ionicons.font);
+        await Asset.loadAsync(require("./my-study.jpg"));
+        await Image.prefetch("https://nomadcoders.co/m-gray.svg");
+        await new Promise((resolve) => setTimeout(resolve, 2000));
       } catch (error) {
-        // 강의의 onError와 동일하게 동작
+        //onError
         console.warn(error);
       } finally {
-        // 강의의 onFinish와 동일하게 동작
+        //onFinish
         setReady(true);
       }
     }
