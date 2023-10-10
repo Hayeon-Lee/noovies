@@ -22,7 +22,7 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer onLayout={onLayoutRootView}>
+    <NavigationContainer onReady={onLayoutRootView}>
       <Tabs />
     </NavigationContainer>
   );
