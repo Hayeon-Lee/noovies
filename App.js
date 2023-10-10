@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import { Text, View, Image, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Asset, useAssets } from "expo-asset";
+import { useAssets } from "expo-asset";
 import * as Font from "expo-font";
 import {
   DarkTheme,
