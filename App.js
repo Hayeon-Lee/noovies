@@ -4,12 +4,10 @@ import { useColorScheme } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useAssets } from "expo-asset";
 import * as Font from "expo-font";
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from "@react-navigation/native";
-import Tabs from "./navigation/Tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { ThemeProvider } from "styled-components/native";
+import Root from "./navigation/Root";
+import { lightTheme, darkTheme } from "./styled";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,11 +25,10 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer
-      onReady={onLayoutRootView}
-      theme={isDark ? DarkTheme : DefaultTheme}
-    >
-      <Tabs />
-    </NavigationContainer>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <NavigationContainer onReady={onLayoutRootView}>
+        <Root />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
