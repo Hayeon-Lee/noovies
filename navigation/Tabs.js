@@ -3,26 +3,14 @@ import { useColorScheme } from "react-native";
 import Search from "../screens/Search";
 import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
-import { YELLOW_COLOR, BLACK_COLOR, WHITE_COLOR } from "../colors";
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
-  const isDark = useColorScheme() === "dark";
-
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarStyle: {
-          backgroundColor: isDark ? BLACK_COLOR : WHITE_COLOR,
-        },
-        tabBarActiveTintColor: YELLOW_COLOR,
-        tabBarInactiveTintColor: isDark ? WHITE_COLOR : BLACK_COLOR,
-        headerStyle: {
-          backgroundColor: isDark ? BLACK_COLOR : WHITE_COLOR,
-        },
-        headerTintColor: isDark ? WHITE_COLOR : BLACK_COLOR,
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: "600",
