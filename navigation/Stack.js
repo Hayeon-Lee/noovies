@@ -1,20 +1,21 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, TouchableOpacity } from "react-native";
+import { BLACK_COLOR } from "../colors";
 
 const ScreenOne = ({ navigation: { navigate } }) => (
   <TouchableOpacity onPress={() => navigate("Two")}>
-    <Text style={{ color: "white" }}>One</Text>
+    <Text style={{ color: BLACK_COLOR }}>go to two</Text>
   </TouchableOpacity>
 );
 const ScreenTwo = ({ navigation: { navigate } }) => (
   <TouchableOpacity onPress={() => navigate("Three")}>
-    <Text style={{ color: "white" }}>Two</Text>
+    <Text style={{ color: BLACK_COLOR }}>go to three</Text>
   </TouchableOpacity>
 );
-const ScreenThree = ({ navigation: { setOptions } }) => (
-  <TouchableOpacity onPress={() => setOptions({ title: "Hello!" })}>
-    <Text style={{ color: "white" }}>Change title</Text>
+const ScreenThree = ({ navigation: { navigate } }) => (
+  <TouchableOpacity onPress={() => navigate("Tabs", { screen: "Search" })}>
+    <Text style={{ color: BLACK_COLOR }}>Change title</Text>
   </TouchableOpacity>
 );
 
@@ -23,7 +24,6 @@ const NativeStack = createNativeStackNavigator();
 const Stack = () => (
   <NativeStack.Navigator
     screenOptions={{
-      headerTintColor: "yellow",
       headerBackTitleVisible: false,
     }}
   >

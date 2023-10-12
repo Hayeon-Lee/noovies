@@ -5,7 +5,6 @@ import Movies from "../screens/Movies";
 import Tv from "../screens/Tv";
 import { YELLOW_COLOR, BLACK_COLOR, WHITE_COLOR } from "../colors";
 import { Ionicons } from "@expo/vector-icons";
-import Stack from "./Stack";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,11 +27,12 @@ const Tabs = () => {
           fontSize: 12,
           fontWeight: "600",
         },
+        headerShown: false,
       }}
     >
       <Tab.Screen
         name="Movies"
-        component={Stack}
+        component={Movies}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name={"film-outline"} color={color} size={size} />
