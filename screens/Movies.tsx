@@ -1,9 +1,10 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState, useEffect } from "react";
-import { ActivityIndicator, Dimensions } from "react-native";
-import Swiper from "react-native-web-swiper";
+import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
+import Swiper from "react-native-swiper";
 import styled from "styled-components/native";
 import { makeImgPath } from "../utils";
+import { BlurView } from "@react-native-community/blur";
 
 const Container = styled.ScrollView`
   background-color: ${(props) => props.theme.mainBgColor};
@@ -20,9 +21,7 @@ const Loader = styled.View`
   background-color: ${(props) => props.theme.mainBgColor};
 `;
 
-const BgImg = styled.Image`
-  flex: 1;
-`;
+const BgImg = styled.Image``;
 
 const Title = styled.Text``;
 
@@ -66,17 +65,20 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = ({
   ) : (
     <Container>
       <Swiper
-        loop
-        timeout={3.5}
-        controlsEnabled={false}
+        autoplay={true}
+        autoplayTimeout={3.5}
+        showsPagination={false}
         containerStyle={{ width: "100%", height: SCREEN_HEIGHT / 4 }}
       >
         {nowPlayingMovies.map((movie) => (
           <View key={movie.id}>
-            <BgImg source={{ uri: makeImgPath(movie.backdrop_path) }} />
-            {/*<BlurView>
+            <BgImg
+              style={StyleSheet.absoluteFill}
+              source={{ uri: makeImgPath(movie.backdrop_path) }}
+            />
+            <BlurView style={StyleSheet.absoluteFill}>
               <Title>{movie.original_title}</Title>
-        </BlurView>*/}
+            </BlurView>
           </View>
         ))}
       </Swiper>
