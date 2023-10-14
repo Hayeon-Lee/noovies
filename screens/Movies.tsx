@@ -41,7 +41,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
-
+  //Use API
   const getNowPlaying = async () => {
     const { results } = await (
       await fetch(
