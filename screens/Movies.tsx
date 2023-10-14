@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React from "react";
-import { Dimensions } from "react-native";
+import React, { useState } from "react";
+import { ActivityIndicator, Dimensions } from "react-native";
 import Swiper from "react-native-web-swiper";
 import styled from "styled-components/native";
 
@@ -10,6 +10,13 @@ const Container = styled.ScrollView`
 
 const View = styled.View`
   flex: 1;
+`;
+
+const Loader = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.mainBgColor};
 `;
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -27,7 +34,7 @@ const options = {
 const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = ({
   navigation,
 }) => {
-  console.log(API_KEY);
+  const [loading, setLoading] = useState(true);
   const getNowPlaying = () => {
     fetch(
       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&region=KR",
@@ -38,7 +45,11 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = ({
       .catch((err) => console.error(err));
   };
 
-  return (
+  return loading ? (
+    <Loader>
+      <ActivityIndicator />
+    </Loader>
+  ) : (
     <Container>
       <Swiper
         loop
