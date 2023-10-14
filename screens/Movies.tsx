@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ActivityIndicator, Dimensions } from "react-native";
 import Swiper from "react-native-web-swiper";
 import styled from "styled-components/native";
@@ -35,15 +35,21 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = ({
   navigation,
 }) => {
   const [loading, setLoading] = useState(true);
-  const getNowPlaying = () => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&region=KR",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+  console.log(API_KEY);
+
+  const getNowPlaying = async () => {
+    const data = await (
+      await fetch(
+        "https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1",
+        options
+      )
+    ).json();
+    console.log(data);
   };
+
+  useEffect(() => {
+    getNowPlaying();
+  }, []);
 
   return loading ? (
     <Loader>
