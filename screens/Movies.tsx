@@ -6,29 +6,27 @@ import styled from "styled-components/native";
 import { makeImgPath } from "../utils";
 import { BlurView } from "@react-native-community/blur";
 
+//style
 const Container = styled.ScrollView`
   background-color: ${(props) => props.theme.mainBgColor};
 `;
-
 const View = styled.View`
   flex: 1;
 `;
-
 const Loader = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.mainBgColor};
 `;
-
 const BgImg = styled.Image``;
-
 const Title = styled.Text``;
 
+//dimension
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
+//Use TDBMS
 const API_KEY = process.env.API_KEY;
-
 const options = {
   method: "GET",
   headers: {
@@ -37,6 +35,7 @@ const options = {
   },
 };
 
+//class
 const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = ({
   navigation,
 }) => {
